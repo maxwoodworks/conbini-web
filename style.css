@@ -43,8 +43,9 @@ img { display: block; max-width: 100%; }
   pointer-events: none;
   background: url("assets/grain.svg") repeat;
   background-size: 180px 180px;
-  mix-blend-mode: soft-light;
-  opacity: .58;
+  background-color: var(--pink);
+  background-blend-mode: soft-light;
+  opacity: 1;
   transform: translate(var(--grain-x), var(--grain-y));
 }
 
