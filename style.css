@@ -149,7 +149,7 @@ img { display: block; max-width: 100%; }
 
 /* On phones, preserve the artwork and give the navigation/text room to breathe. */
 @media (max-width: 640px) {
-  .artboard { aspect-ratio: auto; min-height: max(100svh, calc(600px + 72cqw)); }
+  .artboard { aspect-ratio: auto; min-height: max(100svh, calc(640px + 72cqw)); }
   .ticker { left: 5%; top: 25px; width: 90%; height: 52px; border-width: 1.5px; border-radius: 28px; }
   .ticker__set { gap: 68px; padding-inline: 34px; }
   .ticker__set img { width: auto; height: 40px; }
@@ -157,9 +157,9 @@ img { display: block; max-width: 100%; }
   .logo { left: 8%; top: 280px; width: 84%; }
   .mascot--sun { left: 9%; top: 137px; width: 28%; }
   .mascot--moon { left: 67%; top: calc(292px + 38cqw); width: 27%; }
-  .art-label--menu { left: 9%; top: auto; bottom: 220px; width: 28%; min-height: 44px; }
-  .art-label--about { left: auto; right: 9%; top: auto; bottom: 220px; width: 25%; min-height: 44px; }
-  .tagline { left: 25%; top: auto; bottom: 136px; width: 50%; }
+  .art-label--menu { left: 9%; top: auto; bottom: calc(100px + 33cqw); width: 28%; min-height: 44px; }
+  .art-label--about { left: auto; right: 9%; top: auto; bottom: calc(100px + 33cqw); width: 25%; min-height: 44px; }
+  .tagline { left: 25%; top: auto; bottom: calc(68px + 22cqw); width: 50%; }
   .description-bar { left: 5%; top: auto; bottom: 28px; width: 90%; height: auto; min-height: 86px; padding: 13px 20px; border-width: 1.5px; border-radius: 24px; }
   .description-bar__art { display: none; }
   .description-bar__mobile { display: block; width: 100%; height: auto; margin: 0; }
