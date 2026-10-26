@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en-NZ">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#eaabcd">
+    <meta name="description" content="Conbini — Wellington’s wonderland specialty Japanese convenience store. Great Food, Great Days!">
+    <title>Conbini — Great Food, Great Days!</title>
+    <link rel="icon" href="assets/sun-a.svg" type="image/svg+xml">
+    <link rel="preload" href="assets/conbini-logo.svg" as="image">
+    <link rel="stylesheet" href="style.css">
+    <script src="java.js" defer></script>
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- Desktop coordinates follow the original 1920 × 1080 Illustrator artboard. -->
+    <main class="artboard" data-mascot-frame="0">
+      <header class="ticker" aria-label="Fresh daily. Speciality coffee. 8am–9pm, 7 days! Sandos. Instagram. www.conbini.co.nz">
+        <div class="ticker__track" aria-hidden="true">
+          <div class="ticker__set">
+            <img class="ticker__address" src="assets/ticker-web-address.svg" alt="" width="309" height="51">
+            <img class="ticker__fresh" src="assets/ticker-fresh-daily.svg" alt="" width="273.5" height="67">
+            <img class="ticker__coffee" src="assets/ticker-speciality-coffee.svg" alt="" width="388.5" height="67">
+            <img class="ticker__hours" src="assets/ticker-hours.svg" alt="" width="419" height="67.5">
+            <img class="ticker__sandos" src="assets/ticker-sandos.svg" alt="" width="157" height="50.5">
+            <img class="ticker__instagram" src="assets/ticker-instagram.svg" alt="" width="214" height="63.5">
+          </div>
+          <!-- An identical second set makes the scrolling loop seamless. -->
+          <div class="ticker__set">
+            <img class="ticker__address" src="assets/ticker-web-address.svg" alt="" width="309" height="51">
+            <img class="ticker__fresh" src="assets/ticker-fresh-daily.svg" alt="" width="273.5" height="67">
+            <img class="ticker__coffee" src="assets/ticker-speciality-coffee.svg" alt="" width="388.5" height="67">
+            <img class="ticker__hours" src="assets/ticker-hours.svg" alt="" width="419" height="67.5">
+            <img class="ticker__sandos" src="assets/ticker-sandos.svg" alt="" width="157" height="50.5">
+            <img class="ticker__instagram" src="assets/ticker-instagram.svg" alt="" width="214" height="63.5">
+          </div>
+        </div>
+      </header>
+
+      <div class="mascot mascot--sun" aria-hidden="true">
+        <img class="mascot__original" src="assets/sun-a.svg" alt="" width="303" height="241.5">
+        <img class="mascot__alternate" src="assets/sun-b.svg" alt="" width="303" height="242">
+      </div>
+
+      <h1 class="logo">
+        <img src="assets/conbini-logo.svg" alt="Conbini" width="842" height="385.5" fetchpriority="high">
+      </h1>
+
+      <div class="mascot mascot--moon" aria-hidden="true">
+        <img class="mascot__original" src="assets/moon-a.svg" alt="" width="304" height="247">
+        <img class="mascot__alternate" src="assets/moon-b.svg" alt="" width="304" height="247">
+      </div>
+
+      <nav class="navigation" aria-label="Main navigation">
+        <button class="art-link art-link--menu" type="button" data-open-dialog="menu-dialog" aria-haspopup="dialog">
+          <img src="assets/our-menu.svg" alt="Our Menu" width="149" height="65.5">
+        </button>
+        <p class="tagline"><img src="assets/tagline.svg" alt="Great Food, Great Days! ©" width="393.5" height="88"></p>
+        <button class="art-link art-link--about" type="button" data-open-dialog="about-dialog" aria-haspopup="dialog">
+          <img src="assets/about-us.svg" alt="About us" width="131" height="65.5">
+        </button>
+      </nav>
+
+      <div class="description-bar">
+        <img class="description-bar__art" src="assets/description.svg" alt="Conbini is Wellington’s wonderland specialty Japanese convenience store, so why not try it out?" width="1674.5" height="80.5">
+        <p class="description-bar__mobile">Conbini is Wellington’s wonderland specialty Japanese convenience store, so why not try it out?</p>
+      </div>
+    </main>
+
+    <button class="motion-toggle" type="button" aria-label="Pause animations" aria-pressed="false" title="Pause animations">
+      <svg class="motion-toggle__pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6v12M16 6v12"/></svg>
+      <svg class="motion-toggle__play" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 9 6-9 6Z"/></svg>
+    </button>
+
+    <dialog class="info-dialog" id="menu-dialog" aria-labelledby="menu-title">
+      <form method="dialog"><button class="dialog-close" aria-label="Close menu">×</button></form>
+      <p class="dialog-eyebrow">Fresh daily</p>
+      <h2 id="menu-title">Our Menu</h2>
+      <p class="menu-line">Sandos <span aria-hidden="true">✳</span> Speciality coffee</p>
+      <p>The full menu is coming soon.</p>
+      <p class="dialog-hours">8am – 9pm, 7 days!</p>
+    </dialog>
+
+    <dialog class="info-dialog" id="about-dialog" aria-labelledby="about-title">
+      <form method="dialog"><button class="dialog-close" aria-label="Close about us">×</button></form>
+      <p class="dialog-eyebrow">Great Food, Great Days!</p>
+      <h2 id="about-title">About us</h2>
+      <p>Conbini is Wellington’s wonderland specialty Japanese convenience store, so why not try it out?</p>
+      <p class="dialog-hours">8am – 9pm, 7 days!</p>
+    </dialog>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+.DS_Store
+*.ai
+~ai-*.tmp
+all/
+tmp/
+node_modules/
