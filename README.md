@@ -6,7 +6,7 @@ A plain HTML, CSS and JavaScript website based on `CONBINI WEB.ai`.
 
 Open this CONBINI folder. The main files are:
 
-- `index.html` — page content, scrolling phrases and menu/about dialogs.
+- `index.html` — page content and scrolling phrases.
 - `style.css` — layout, colours, responsive styling, grain and logo entrance.
 - `java.js` — the synchronised one-second mascot/grain changes and animation pause control.
 - `assets/` — original artwork exported as SVGs, plus a small grain texture.
@@ -17,7 +17,7 @@ Open `index.html` directly in a browser, or use the VS Code Live Server extensio
 
 The desktop canvas is **1920 × 1080 (16:9)** and scales proportionally up to the original size. Below 640px, a separate mobile layout keeps the artwork and controls readable.
 
-Both original and off-artboard mascot expressions were extracted from the Illustrator file. `MASCOT_INTERVAL_MS` in `java.js` controls their interval (1000 = one second). The grain shifts at the same moment. The main logo drops in with a small bounce on page load. The top bar loops continuously with even gaps between phrases.
+Both original and off-artboard mascot expressions were extracted from the Illustrator file. `MASCOT_INTERVAL_MS` in `java.js` controls their interval (1000 = one second). The grain shifts at the same moment. The main logo drops in slowly over 2.4 seconds with a small bounce on page load. The top bar loops continuously with doubled gaps between phrases. All scrolling text uses the same Bodoni italic size and baseline. Both desktop and phone descriptions preserve the same Illustrator typeface.
 
 The small pause control in the bottom-right corner stops the animations. Reduced-motion settings are respected.
 
@@ -25,7 +25,7 @@ The Illustrator lettering is preserved as outlined SVG artwork, so the page does
 
 ## Content still to add
 
-The supplied artwork does not include a full menu, prices, or a verified Instagram profile URL. The Our Menu dialog clearly says the full menu is coming soon. No prices or social profile have been invented.
+The supplied artwork does not include a full menu, prices, or a verified Instagram profile URL. Our Menu and About us are artwork labels; there are no popups. No prices or social profile have been invented.
 
 ## GitHub Pages
 
