@@ -2,56 +2,34 @@
   color-scheme: light;
   --pink: #eaabcd;
   --hot-pink: #e262a3;
-  --blue: #1b75bb;
   --ink: #181518;
-  --wine: #771217;
-  --grain-x: 0px;
-  --grain-y: 0px;
   --ticker-duration: 34s;
 }
 
 * { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; }
 body {
-  margin: 0;
-  min-height: 100svh;
+  height: 100svh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
   background: var(--pink);
   color: var(--ink);
   font-family: Georgia, "Times New Roman", serif;
 }
-button { font: inherit; color: inherit; }
-button, a { -webkit-tap-highlight-color: transparent; }
-button { cursor: pointer; }
-button:focus-visible, a:focus-visible { outline: 3px dashed var(--wine); outline-offset: 8px; }
 img { display: block; max-width: 100%; }
 
-/* 1 cqw equals 19.2px at the Illustrator artboard's original size. */
+/* Keep the original artwork proportions while filling one screen vertically. */
 .artboard {
   position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 1920px;
-  aspect-ratio: 1920 / 1080;
-  margin-inline: auto;
+  width: min(100vw, 177.777778svh, 1920px);
+  height: 100svh;
   overflow: clip;
   container-type: inline-size;
-  isolation: isolate;
-}
-.grain {
-  position: fixed;
-  z-index: 0;
-  inset: -256px;
-  pointer-events: none;
-  background: url("assets/grain.svg") repeat;
-  background-size: 180px 180px;
-  background-color: var(--pink);
-  background-blend-mode: soft-light;
-  opacity: 1;
-  transform: translate(var(--grain-x), var(--grain-y));
 }
 
 .ticker {
   position: absolute;
-  z-index: 3;
   left: 4.640625%;
   top: 4.33148%;
   width: 90.71875%;
@@ -71,31 +49,21 @@ img { display: block; max-width: 100%; }
   flex: none;
   display: flex;
   align-items: center;
-  gap: 7.4cqw;
-  padding-inline: 3.7cqw;
+  gap: 14.8cqw;
+  padding-inline: 7.4cqw;
 }
 .ticker__set img { flex: none; max-width: none; width: auto; height: 3.926cqw; }
-@keyframes ticker-scroll { to { transform: translateX(-50%); } }
+/* Four identical pairs keep the shorter ticker filled throughout its loop. */
+@keyframes ticker-scroll { to { transform: translateX(-25%); } }
 
 .logo {
   position: absolute;
-  z-index: 2;
   left: 28.541667%;
   top: 31.296296%;
   width: 43.854167%;
   margin: 0;
-  transform-origin: 50% 35%;
-  animation: logo-drop 2400ms both;
 }
 .logo img { width: 100%; height: auto; }
-@keyframes logo-drop {
-  0% { transform: translateY(-110vh) rotate(-8deg); }
-  56% { transform: translateY(0) rotate(2.5deg); animation-timing-function: ease-out; }
-  72% { transform: translateY(-3cqw) rotate(-1.5deg); animation-timing-function: ease-in; }
-  86% { transform: translateY(0) rotate(.7deg); }
-  94% { transform: translateY(-.5cqw) rotate(-.3deg); }
-  100% { transform: translateY(0) rotate(0); }
-}
 
 .mascot { position: absolute; }
 .mascot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
@@ -108,63 +76,25 @@ img { display: block; max-width: 100%; }
 .navigation { display: contents; }
 .art-label { position: absolute; display: block; margin: 0; }
 .art-label img { width: 100%; height: auto; }
-.art-label--menu { left: 6.5625%; top: 79.259259%; width: 7.760417%; }
-.art-label--about { left: 86.5625%; top: 79.351852%; width: 6.822917%; }
-.tagline { position: absolute; left: 41.432292%; top: 79.259259%; width: 20.494792%; margin: 0; }
+.art-label--menu { left: 6.5625%; top: 85%; width: 7.760417%; }
+.art-label--about { left: 86.5625%; top: 85%; width: 6.822917%; }
+.tagline { position: absolute; left: 41.432292%; top: 85%; width: 20.494792%; margin: 0; }
 .tagline img { width: 100%; height: auto; }
-.description-bar {
-  position: absolute;
-  left: 4.640625%;
-  top: 88.623148%;
-  width: 90.71875%;
-  height: 8.919444%;
-  border: max(1px, .15625cqw) solid var(--ink);
-  border-radius: 2cqw;
-  background: var(--blue);
-}
-.description-bar__art { position: absolute; left: 1.917%; top: 11.8%; width: 96.136%; height: auto; }
-.description-bar__mobile { display: none; }
 
-.motion-toggle {
-  position: fixed;
-  z-index: 11;
-  bottom: 6px;
-  right: 6px;
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  padding: 6px;
-  border: 1px solid transparent;
-  border-radius: 50%;
-  background: transparent;
-  opacity: .45;
-}
-.motion-toggle:hover, .motion-toggle:focus-visible { opacity: 1; background: var(--pink); border-color: currentColor; }
-.motion-toggle svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2; fill: none; }
-.motion-toggle__play { display: none; }
-.is-paused .ticker__track, .is-paused .logo { animation-play-state: paused; }
-.is-paused .motion-toggle__pause { display: none; }
-.is-paused .motion-toggle__play { display: block; }
-
-/* On phones, preserve the artwork and give the navigation/text room to breathe. */
-@media (max-width: 640px) {
-  .artboard { aspect-ratio: auto; min-height: max(100svh, calc(640px + 72cqw)); }
-  .ticker { left: 5%; top: 25px; width: 90%; height: 52px; border-width: 1.5px; border-radius: 28px; }
-  .ticker__set { gap: 68px; padding-inline: 34px; }
-  .ticker__set img { width: auto; height: 40px; }
+/* Portrait screens use the available height while keeping everything in view. */
+@media (max-aspect-ratio: 4/5) {
+  .artboard { width: 100%; height: 100svh; aspect-ratio: auto; }
+  .ticker { left: 5%; top: 3%; width: 90%; height: clamp(40px, 6.2svh, 60px); border-width: 1.5px; border-radius: 32px; }
+  .ticker__set { gap: 136px; padding-inline: 68px; }
+  .ticker__set img { height: clamp(30px, 4.8svh, 46px); }
   .ticker__track { animation-duration: 40s; }
-  .logo { left: 8%; top: 280px; width: 84%; }
-  .mascot--sun { left: 9%; top: 137px; width: 28%; }
-  .mascot--moon { left: 67%; top: calc(292px + 38cqw); width: 27%; }
-  .art-label--menu { left: 9%; top: auto; bottom: calc(100px + 33cqw); width: 28%; min-height: 44px; }
-  .art-label--about { left: auto; right: 9%; top: auto; bottom: calc(100px + 33cqw); width: 25%; min-height: 44px; }
-  .tagline { left: 25%; top: auto; bottom: calc(68px + 22cqw); width: 50%; }
-  .description-bar { left: 5%; top: auto; bottom: 28px; width: 90%; height: auto; min-height: 86px; padding: 13px 20px; border-width: 1.5px; border-radius: 24px; }
-  .description-bar__art { display: none; }
-  .description-bar__mobile { display: block; width: 100%; height: auto; margin: 0; }
+  .logo { left: 50%; top: 45%; width: min(84cqw, 70svh); transform: translate(-50%, -50%); }
+  .mascot--sun { left: 9%; top: 15%; width: min(28cqw, 14svh); }
+  .mascot--moon { left: auto; right: 6%; top: 61%; width: min(27cqw, 14svh); }
+  .art-label--menu { left: 9%; top: auto; bottom: 17%; width: 28%; }
+  .art-label--about { left: auto; right: 9%; top: auto; bottom: 17%; width: 25%; }
+  .tagline { left: 22.5%; top: auto; bottom: 4%; width: 55%; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ticker__track, .logo { animation: none; }
-  .mascot, .art-label img { transition: none; }
+  .ticker__track { animation: none; }
 }
