@@ -26,6 +26,29 @@ body {
 }
 img { display: block; max-width: 100%; }
 
+/* Open on the oversized wordmark, then gently reveal the page beneath it. */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--pink);
+  pointer-events: none;
+  animation: intro-fade 1.1s .9s ease-in-out forwards;
+}
+.intro__logo {
+  width: 100%;
+  height: 88%;
+  max-width: none;
+  object-fit: fill;
+}
+@keyframes intro-fade {
+  from { opacity: 1; visibility: visible; }
+  to { opacity: 0; visibility: hidden; }
+}
+
 .page {
   position: relative;
   width: 100%;
@@ -72,9 +95,9 @@ img { display: block; max-width: 100%; }
 
 .logo {
   position: absolute;
-  left: 28.541667%;
-  top: 31.296296%;
-  width: 43.854167%;
+  left: 28.385417%;
+  top: 26.388889%;
+  width: 44.375%;
   margin: 0;
 }
 .logo img { width: 100%; height: auto; transform: scale(.85); }
@@ -107,6 +130,7 @@ img { display: block; max-width: 100%; }
 
 /* Portrait screens use the available height while keeping everything in view. */
 @media (max-aspect-ratio: 4/5) {
+  .intro__logo { width: calc(100% - 16px); height: auto; }
   :root { --footer-unit: calc(.85 * min(1px, calc((100vw - 2 * var(--page-inset) - 2 * var(--footer-gap)) / 691.5))); }
   .artboard { width: 100%; height: 100svh; aspect-ratio: auto; }
   .ticker { height: calc(.85 * clamp(40px, 6.2svh, 60px)); border-width: 1.275px; }
@@ -118,5 +142,6 @@ img { display: block; max-width: 100%; }
   .mascot--moon { left: auto; right: 6%; top: 61%; width: min(27vw, 14svh); }
 }
 @media (prefers-reduced-motion: reduce) {
+  .intro { display: none; }
   .ticker__track { animation: none; }
 }
