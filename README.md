@@ -11,7 +11,7 @@ Open this CONBINI folder in Visual Studio Code. Open `index.html` directly in a 
 - `java.js` — the sun and moon’s one-second expression changes and the initial scroll-cushion position.
 - `assets/` — original Illustrator artwork and outlined Bodoni lettering.
 
-The updated logo is extracted directly from the Illustrator source. Each page load opens with the oversized logo on pink for 0.9 seconds, then fades into the current page over 5 seconds. Portrait screens show the full wordmark at its original proportions, and reduced-motion visitors go straight to the page. The main logo stays in position after the reveal.
+The updated logo is extracted directly from the Illustrator source. Each page load opens with the oversized logo on pink for 0.9 seconds, then fades into the current page over 5 seconds. The centre logo stays hidden throughout the opening fade and for 3 more seconds after the fade finishes, then appears in place. Portrait screens show the full wordmark at its original proportions, and reduced-motion visitors go straight to the complete page. The opening hold, fade duration and centre logo wait share timing variables at the top of `style.css`.
 
 The original artwork retains its proportions within a layout that fits the viewport. Portrait screens use a separate layout that also fits into one screen. The blue description box, grain, play/pause control, and falling logo effect are removed. Our Menu and About us are artwork labels with no popups.
 
