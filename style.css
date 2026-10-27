@@ -4,6 +4,9 @@
   --hot-pink: #e262a3;
   --ink: #181518;
   --ticker-duration: 24s;
+  --intro-hold: .9s;
+  --intro-fade-duration: 5s;
+  --centre-logo-wait: 3s;
   --scroll-buffer: 2px;
   --page-inset: clamp(12px, 2vmin, 24px);
   --footer-inset: max(var(--page-inset), env(safe-area-inset-bottom, 0px));
@@ -36,7 +39,7 @@ img { display: block; max-width: 100%; }
   overflow: hidden;
   background: var(--pink);
   pointer-events: none;
-  animation: intro-fade 5s .9s ease-in-out forwards;
+  animation: intro-fade var(--intro-fade-duration) var(--intro-hold) ease-in-out forwards;
 }
 .intro__logo {
   width: 100%;
@@ -99,7 +102,10 @@ img { display: block; max-width: 100%; }
   top: 31.296296%;
   width: 44.010417%;
   margin: 0;
+  opacity: 0;
+  animation: logo-appear 0s calc(var(--intro-hold) + var(--intro-fade-duration) + var(--centre-logo-wait)) forwards;
 }
+@keyframes logo-appear { to { opacity: 1; } }
 .logo img { width: 100%; height: auto; transform: scale(.85); }
 
 .mascot { position: absolute; }
@@ -143,5 +149,6 @@ img { display: block; max-width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .intro { display: none; }
+  .logo { animation: none; opacity: 1; }
   .ticker__track { animation: none; }
 }
