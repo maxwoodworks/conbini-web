@@ -6,7 +6,7 @@
   --ticker-duration: 24s;
   --intro-hold: .9s;
   --intro-fade-duration: 5s;
-  --centre-logo-wait: 3s;
+  --centre-logo-wait: 2s;
   --scroll-buffer: 2px;
   --page-inset: clamp(12px, 2vmin, 24px);
   --footer-inset: max(var(--page-inset), env(safe-area-inset-bottom, 0px));
@@ -146,6 +146,17 @@ img { display: block; max-width: 100%; }
   .logo { left: 50%; top: 45%; width: min(84vw, 70svh); transform: translate(-50%, -50%); }
   .mascot--sun { left: 9%; top: 15%; width: min(28vw, 14svh); }
   .mascot--moon { left: auto; right: 6%; top: 61%; width: min(27vw, 14svh); }
+}
+/* Turn the opening wordmark down the length of portrait phone screens. */
+@media (max-width: 600px) and (orientation: portrait) {
+  .intro__logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: calc(100svh - 32px);
+    height: calc(100vw - 24px);
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .intro { display: none; }
