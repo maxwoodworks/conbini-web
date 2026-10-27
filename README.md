@@ -1,34 +1,20 @@
 # Conbini
 
-A plain HTML, CSS and JavaScript website based on `CONBINI WEB.ai`.
+A buildless HTML, CSS and JavaScript website based on `CONBINI WEB.ai`.
 
-## Open in Visual Studio Code
+Live site: https://maxwoodworks.github.io/conbini-web/
 
-Open this CONBINI folder. The main files are:
+Open this CONBINI folder in Visual Studio Code. Open `index.html` directly in a browser, or use the VS Code Live Server extension. There are no dependencies or build steps.
 
-- `index.html` — page content and scrolling phrases.
-- `style.css` — layout, colours, responsive styling, grain and logo entrance.
-- `java.js` — the synchronised one-second mascot/grain changes and animation pause control.
-- `assets/` — original artwork exported as SVGs, plus a small grain texture.
+- `index.html` — artwork and the two repeating ticker phrases: “@conbini.nz” and “open 7 days!”.
+- `style.css` — the plain pink, single-screen layout and widely spaced scrolling ticker.
+- `java.js` — the sun and moon’s one-second expression changes.
+- `assets/` — original Illustrator artwork and outlined Bodoni lettering.
 
-Open `index.html` directly in a browser, or use the VS Code Live Server extension. There are no build steps, packages, external fonts, or third-party scripts.
+The original artwork retains its proportions within a layout that fits the viewport. Portrait screens use a separate layout that also fits into one screen. The blue description box, grain, play/pause control, and logo entrance are removed. The logo stays in position. Our Menu and About us are artwork labels with no popups.
 
-## Layout and animation
+The ticker uses matching type sizes and baselines, with equal spacing between every item and at the loop boundary. Four identical pairs keep the shorter sequence filled throughout the loop. Reduced-motion preferences are respected.
 
-The desktop canvas is **1920 × 1080 (16:9)** and scales proportionally up to the original size. Below 640px, a separate mobile layout keeps the artwork and controls readable.
+To change the mascot interval, edit `MASCOT_INTERVAL_MS` in `java.js`. The lettering is outlined SVG artwork, so visitors do not need the original fonts. The two current ticker graphics are `assets/ticker-web-address.svg` and `assets/ticker-hours.svg`.
 
-Both original and off-artboard mascot expressions were extracted from the Illustrator file. `MASCOT_INTERVAL_MS` in `java.js` controls their interval (1000 = one second). The grain shifts at the same moment. The main logo drops in slowly over 2.4 seconds with a small bounce on page load. The top bar loops continuously with doubled gaps between phrases. All scrolling text uses the same Bodoni italic size and baseline. Both desktop and phone descriptions preserve the same Illustrator typeface.
-
-The small pause control in the bottom-right corner stops the animations. Reduced-motion settings are respected.
-
-The Illustrator lettering is preserved as outlined SVG artwork, so the page does not depend on visitors having the original fonts installed. Update the matching SVG to replace that lettering.
-
-## Content still to add
-
-The supplied artwork does not include a full menu, prices, or a verified Instagram profile URL. Our Menu and About us are artwork labels; there are no popups. No prices or social profile have been invented.
-
-## GitHub Pages
-
-Publish the `main` branch from `/ (root)` in the repository’s **Settings → Pages**. `.nojekyll` keeps the site buildless. All asset references are relative, so the website works at a GitHub Pages project URL.
-
-Only website files need to be published. Keep the Illustrator source and Illustrator temporary files local.
+GitHub Pages publishes `main` from `/ (root)`. `.nojekyll` keeps the site buildless. Keep the Illustrator source and temporary files local.
