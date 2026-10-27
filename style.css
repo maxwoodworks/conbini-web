@@ -4,7 +4,7 @@
   --hot-pink: #e262a3;
   --ink: #181518;
   --ticker-duration: 27s;
-  --scroll-buffer: 20px;
+  --scroll-buffer: 10px;
   --page-inset: clamp(12px, 2vmin, 24px);
   --footer-inset: max(var(--page-inset), env(safe-area-inset-bottom, 0px));
   --footer-gap: clamp(8px, 2vw, 24px);
@@ -25,16 +25,23 @@ body {
 }
 img { display: block; max-width: 100%; }
 
+.page {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+}
+
 /* Keep the original artwork proportions while filling one screen vertically. */
 .artboard {
   position: relative;
   width: min(100vw, 177.777778svh, 1920px);
   height: 100svh;
+  margin-inline: auto;
   overflow: clip;
 }
 
 .ticker {
-  position: fixed;
+  position: absolute;
   z-index: 3;
   left: var(--page-inset);
   right: var(--page-inset);
@@ -80,7 +87,7 @@ img { display: block; max-width: 100%; }
 [data-mascot-frame="1"] .mascot__alternate { visibility: visible; }
 
 .navigation {
-  position: fixed;
+  position: absolute;
   left: var(--page-inset);
   right: var(--page-inset);
   bottom: var(--footer-inset);
