@@ -4,7 +4,7 @@
   --hot-pink: #e262a3;
   --ink: #181518;
   --ticker-duration: 27s;
-  --scroll-buffer: 10px;
+  --scroll-buffer: 2px;
   --page-inset: clamp(12px, 2vmin, 24px);
   --footer-inset: max(var(--page-inset), env(safe-area-inset-bottom, 0px));
   --footer-gap: clamp(8px, 2vw, 24px);
@@ -12,8 +12,9 @@
 }
 
 * { box-sizing: border-box; }
-html, body { margin: 0; width: 100%; height: 100%; }
-html { overflow-x: clip; overflow-y: auto; }
+html, body { margin: 0; width: 100%; height: 100%; scrollbar-width: none; }
+html { overflow-x: clip; overflow-y: auto; overscroll-behavior-y: none; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; width: 0; height: 0; }
 body {
   height: calc(100svh + 2 * var(--scroll-buffer));
   padding-block: var(--scroll-buffer);
