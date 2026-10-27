@@ -13,7 +13,9 @@ Open this CONBINI folder in Visual Studio Code. Open `index.html` directly in a 
 
 The original artwork retains its proportions within a layout that fits the viewport. Portrait screens use a separate layout that also fits into one screen. The blue description box, grain, play/pause control, and logo entrance are removed. The logo stays in position. Our Menu and About us are artwork labels with no popups.
 
-The ticker uses matching type sizes and baselines, with equal spacing between every item and at the loop boundary. Four identical pairs keep the shorter sequence filled throughout the loop. Each loop takes 30 seconds on desktop and 35 seconds on portrait screens. The bar sits close to the top corners; Our Menu and About us sit near the lower corners, with the tagline close to the bottom edge. Reduced-motion preferences are respected.
+The artwork, footer lettering, scrolling lettering, and ticker height are reduced by 15%, with the corner positions preserved.
+
+The ticker uses matching type sizes and baselines, with equal spacing between every item and at the loop boundary. Four identical pairs keep the shorter sequence filled throughout the loop. Each loop takes 30 seconds on desktop and 35 seconds on portrait screens. The bar sits close to the top corners. Our Menu, Great Food, Great Days! and About us share one horizontal baseline in a single row close to the bottom edge, including on phones. Reduced-motion preferences are respected.
 
 To change the mascot interval, edit `MASCOT_INTERVAL_MS` in `java.js`. The lettering is outlined SVG artwork, so visitors do not need the original fonts. The two current ticker graphics are `assets/ticker-web-address.svg` and `assets/ticker-hours.svg`.
 
