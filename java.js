@@ -19,3 +19,12 @@ function updateMotion() {
 reducedMotion.addEventListener("change", updateMotion);
 document.addEventListener("visibilitychange", updateMotion);
 updateMotion();
+
+// Start halfway through the small scroll cushion, leaving room in both directions.
+const navigation = performance.getEntriesByType("navigation")[0];
+if (!window.location.hash && navigation?.type !== "back_forward") {
+  requestAnimationFrame(() => {
+    const buffer = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--scroll-buffer"));
+    window.scrollTo(0, buffer);
+  });
+}
