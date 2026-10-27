@@ -7,11 +7,13 @@ Live site: https://maxwoodworks.github.io/conbini-web/
 Open this CONBINI folder in Visual Studio Code. Open `index.html` directly in a browser, or use the VS Code Live Server extension. There are no dependencies or build steps.
 
 - `index.html` — artwork and the two repeating ticker phrases: “@conbini.nz” and “open 7 days!”.
-- `style.css` — the plain pink, single-screen layout and widely spaced scrolling ticker.
+- `style.css` — the plain pink, single-screen layout, opening fade and widely spaced scrolling ticker.
 - `java.js` — the sun and moon’s one-second expression changes and the initial scroll-cushion position.
 - `assets/` — original Illustrator artwork and outlined Bodoni lettering.
 
-The original artwork retains its proportions within a layout that fits the viewport. Portrait screens use a separate layout that also fits into one screen. The blue description box, grain, play/pause control, and logo entrance are removed. The logo stays in position. Our Menu and About us are artwork labels with no popups.
+The updated logo is extracted directly from the Illustrator source. Each page load opens with the oversized logo on pink for 0.9 seconds, then fades into the current page over 1.1 seconds. Portrait screens show the full wordmark at its original proportions, and reduced-motion visitors go straight to the page. The main logo stays in position after the reveal.
+
+The original artwork retains its proportions within a layout that fits the viewport. Portrait screens use a separate layout that also fits into one screen. The blue description box, grain, play/pause control, and falling logo effect are removed. Our Menu and About us are artwork labels with no popups.
 
 The artwork, footer lettering, scrolling lettering, and ticker height are reduced by 15%, with the corner positions preserved.
 
