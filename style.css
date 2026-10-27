@@ -3,7 +3,7 @@
   --pink: #eaabcd;
   --hot-pink: #e262a3;
   --ink: #181518;
-  --ticker-duration: 27s;
+  --ticker-duration: 24s;
   --scroll-buffer: 2px;
   --page-inset: clamp(12px, 2vmin, 24px);
   --footer-inset: max(var(--page-inset), env(safe-area-inset-bottom, 0px));
@@ -136,7 +136,7 @@ img { display: block; max-width: 100%; }
   .ticker { height: calc(.85 * clamp(40px, 6.2svh, 60px)); border-width: 1.275px; }
   .ticker__set { gap: 115.6px; padding-inline: 57.8px; }
   .ticker__set img { height: calc(.85 * clamp(30px, 4.8svh, 46px)); }
-  .ticker__track { animation-duration: 31.5s; }
+  .ticker__track { animation-duration: 28s; }
   .logo { left: 50%; top: 45%; width: min(84vw, 70svh); transform: translate(-50%, -50%); }
   .mascot--sun { left: 9%; top: 15%; width: min(28vw, 14svh); }
   .mascot--moon { left: auto; right: 6%; top: 61%; width: min(27vw, 14svh); }
