@@ -20,41 +20,78 @@ reducedMotion.addEventListener("change", updateMotion);
 document.addEventListener("visibilitychange", updateMotion);
 updateMotion();
 
-// Use the logo's animation event so the sound follows the shared CSS timing.
+// The opening click unlocks audio; the logo's animation event starts the sound.
+const intro = document.querySelector(".intro");
+const introTrigger = document.querySelector(".intro__trigger");
 const logo = document.querySelector(".logo");
 const logoSound = document.querySelector("#logo-sound");
-let logoSoundPending = false;
+let introStarted = false;
+let logoSoundReady = Promise.resolve(null);
 
-function removeSoundFallback() {
-  document.removeEventListener("click", retryLogoSound);
-  document.removeEventListener("keydown", retryLogoSound);
+function prepareLogoSound() {
+  const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContextClass) return;
+  try {
+    const context = new AudioContextClass();
+    // Resume synchronously within the click, keeping playback available later.
+    const resumed = context.resume();
+    const data = fetch(logoSound.src).then((response) => {
+      if (!response.ok) throw new Error("Unable to load the intro sound.");
+      return response.arrayBuffer();
+    });
+    logoSoundReady = Promise.all([resumed, data])
+      .then(([, bytes]) => context.decodeAudioData(bytes))
+      .then((buffer) => ({ context, buffer }))
+      .catch(() => {
+        context.close().catch(() => {});
+        return null;
+      });
+  } catch {
+    // The audio element remains available if Web Audio is unavailable.
+  }
 }
 
-function playLogoSound() {
-  logoSoundPending = false;
-  logoSound.play().then(removeSoundFallback).catch((error) => {
-    if (error.name === "NotAllowedError") {
-      // If autoplay is blocked, the first click, tap or key can start the sound.
-      logoSoundPending = true;
-      document.addEventListener("click", retryLogoSound);
-      document.addEventListener("keydown", retryLogoSound);
-    }
-  });
+async function playLogoSound() {
+  const prepared = await logoSoundReady;
+  if (!prepared) {
+    logoSound.play().catch(() => {});
+    return;
+  }
+  const source = prepared.context.createBufferSource();
+  source.buffer = prepared.buffer;
+  source.connect(prepared.context.destination);
+  source.onended = () => prepared.context.close().catch(() => {});
+  source.start();
 }
 
-function retryLogoSound(event) {
-  if (!event.isTrusted || !logoSoundPending || document.hidden) return;
-  if (event.type === "keydown" && (event.repeat || event.metaKey || event.ctrlKey || event.altKey)) return;
-  playLogoSound();
+function startIntro() {
+  if (introStarted || reducedMotion.matches) return;
+  introStarted = true;
+  prepareLogoSound();
+  introTrigger.disabled = true;
+  document.body.classList.add("intro-started");
 }
 
 function onLogoAppear(event) {
-  if (event.animationName !== "logo-appear") return;
+  if (event.animationName !== "logo-appear" || !introStarted) return;
   logo.removeEventListener("animationstart", onLogoAppear);
   playLogoSound();
 }
 
+function skipIntroForReducedMotion() {
+  if (!reducedMotion.matches) return;
+  intro.hidden = true;
+  introTrigger.disabled = true;
+  document.body.classList.add("intro-complete");
+}
+
+introTrigger.addEventListener("click", startIntro, { once: true });
+intro.addEventListener("animationend", (event) => {
+  if (event.animationName === "intro-fade") intro.hidden = true;
+});
 logo.addEventListener("animationstart", onLogoAppear);
+reducedMotion.addEventListener("change", skipIntroForReducedMotion);
+skipIntroForReducedMotion();
 
 // Start halfway through the small scroll cushion, leaving room in both directions.
 const navigation = performance.getEntriesByType("navigation")[0];

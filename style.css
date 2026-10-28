@@ -4,7 +4,6 @@
   --hot-pink: #e262a3;
   --ink: #181518;
   --ticker-duration: 24s;
-  --intro-hold: .9s;
   --intro-fade-duration: 5s;
   --centre-logo-wait: .5s;
   --scroll-buffer: 2px;
@@ -29,7 +28,7 @@ body {
 }
 img { display: block; max-width: 100%; }
 
-/* Open on the oversized wordmark, then gently reveal the page beneath it. */
+/* Wait for the opening wordmark to be clicked before revealing the page. */
 .intro {
   position: fixed;
   inset: 0;
@@ -38,14 +37,30 @@ img { display: block; max-width: 100%; }
   place-items: center;
   overflow: hidden;
   background: var(--pink);
-  pointer-events: none;
-  animation: intro-fade var(--intro-fade-duration) var(--intro-hold) ease-in-out forwards;
 }
-.intro__logo {
+.intro[hidden] { display: none; }
+.intro__trigger {
   width: 100%;
   height: 88%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.intro__trigger:focus-visible { outline: 2px solid var(--ink); outline-offset: -8px; }
+.intro__logo {
+  width: 100%;
+  height: 100%;
   max-width: none;
   object-fit: fill;
+  transition: scale .18s ease-out;
+}
+@media (hover: hover) and (pointer: fine) {
+  body:not(.intro-started) .intro__trigger:hover .intro__logo { scale: 1.05; }
+}
+.intro-started .intro {
+  pointer-events: none;
+  animation: intro-fade var(--intro-fade-duration) ease-in-out forwards;
 }
 @keyframes intro-fade {
   from { opacity: 1; visibility: visible; }
@@ -103,8 +118,9 @@ img { display: block; max-width: 100%; }
   width: 44.010417%;
   margin: 0;
   opacity: 0;
-  animation: logo-appear 0s calc(var(--intro-hold) + var(--intro-fade-duration) + var(--centre-logo-wait)) forwards;
 }
+.intro-started .logo { animation: logo-appear 0s calc(var(--intro-fade-duration) + var(--centre-logo-wait)) forwards; }
+.intro-complete .logo { animation: none; opacity: 1; }
 @keyframes logo-appear { to { opacity: 1; } }
 .logo img { width: 100%; height: auto; transform: scale(.85); }
 
@@ -136,7 +152,8 @@ img { display: block; max-width: 100%; }
 
 /* Portrait screens use the available height while keeping everything in view. */
 @media (max-aspect-ratio: 4/5) {
-  .intro__logo { width: calc(100% - 16px); height: auto; }
+  .intro__trigger { width: calc(100% - 16px); height: auto; }
+  .intro__logo { height: auto; }
   :root { --footer-unit: calc(.85 * min(1px, calc((100vw - 2 * var(--page-inset) - 2 * var(--footer-gap)) / 691.5))); }
   .artboard { width: 100%; height: 100svh; aspect-ratio: auto; }
   .ticker { height: calc(.85 * clamp(40px, 6.2svh, 60px)); border-width: 1.275px; }
@@ -149,7 +166,7 @@ img { display: block; max-width: 100%; }
 }
 /* Turn the opening wordmark down the length of portrait phone screens. */
 @media (max-width: 600px) and (orientation: portrait) {
-  .intro__logo {
+  .intro__trigger {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -157,9 +174,11 @@ img { display: block; max-width: 100%; }
     height: calc(100vw - 24px);
     transform: translate(-50%, -50%) rotate(90deg);
   }
+  .intro__logo { height: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .intro { display: none; }
+  .intro__logo { transition: none; }
   .logo { animation: none; opacity: 1; }
   .ticker__track { animation: none; }
 }
