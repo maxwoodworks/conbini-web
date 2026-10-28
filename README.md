@@ -8,10 +8,11 @@ Open this CONBINI folder in Visual Studio Code. Open `index.html` directly in a 
 
 - `index.html` — artwork and the two repeating ticker phrases: “@conbini.nz” and “open 7 days!”.
 - `style.css` — the plain pink, single-screen layout, opening fade and widely spaced scrolling ticker.
-- `java.js` — the sun and moon’s one-second expression changes and the initial scroll-cushion position.
+- `java.js` — the sun and moon’s one-second expression changes, logo sound and the initial scroll-cushion position.
+- `assets/konbini-intro.mp3` — the sound that plays once when the centre logo reappears, with a 15% volume reduction applied to the audio file.
 - `assets/` — original Illustrator artwork and outlined Bodoni lettering.
 
-The updated logo is extracted directly from the Illustrator source. Each page load opens with the oversized logo on pink for 0.9 seconds, then fades into the current page over 5 seconds. On all screen sizes, the centre logo stays hidden throughout the opening fade and for 1 more second after the fade finishes, then appears in place. On portrait phones up to 600px wide, the opening wordmark runs vertically down almost the full screen, with a small margin around it. Reduced-motion visitors go straight to the complete page. The opening hold, fade duration and centre logo wait share timing variables at the top of `style.css`.
+The updated logo is extracted directly from the Illustrator source. Each page load opens with the oversized logo on pink for 0.9 seconds, then fades into the current page over 5 seconds. On all screen sizes, the centre logo stays hidden throughout the opening fade and for 0.5 more seconds after the fade finishes, then appears in place. `assets/konbini-intro.mp3` is preloaded and starts from the logo's appearance event, 6.4 seconds into the opening sequence. Its volume is reduced to 85% of the local `KONBINI.mp3` source, with the reduction applied directly to the audio so it also works on phones. If the browser blocks audio autoplay, the first subsequent click, tap or key starts the sound instead. On portrait phones up to 600px wide, the opening wordmark runs vertically down almost the full screen, with a small margin around it. Reduced-motion visitors go straight to the complete page without the intro sound. The opening hold, fade duration and centre logo wait share timing variables at the top of `style.css`.
 
 The original artwork retains its proportions within a layout that fits the viewport. Portrait screens use a separate layout that also fits into one screen. The blue description box, grain, play/pause control, and falling logo effect are removed. Our Menu and About us are artwork labels with no popups.
 
