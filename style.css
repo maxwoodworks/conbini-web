@@ -56,7 +56,7 @@ img { display: block; max-width: 100%; }
   transition: scale .18s ease-out;
 }
 @media (hover: hover) and (pointer: fine) {
-  body:not(.intro-started) .intro__trigger:hover .intro__logo { scale: 1.05; }
+  body:not(.intro-started) .intro__trigger:hover .intro__logo { scale: 1.02; }
 }
 .intro-started .intro {
   pointer-events: none;
